@@ -8,7 +8,7 @@ Timer::Timer(int i)
 {
 	interval = i*1000;
 	go = true;
-	_thread = new std::thread(InitTimer,*this);
+	_thread = new std::thread(&Timer::InitTimer,*this);
 }
 
 Timer::Timer() : Timer::Timer(1)
@@ -66,7 +66,7 @@ bool Timer::Going()
 	return go;
 }
 
-void InitTimer(Timer t)
+void Timer::InitTimer(Timer t)
 {
 	t.Init();
 }

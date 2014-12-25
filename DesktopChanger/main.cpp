@@ -3,6 +3,7 @@
 #include <cstdlib>
 #include "Timer.h"
 
+
 int main(int argc, char* argv[])
 {
 	// chiedo tempo di refresh
@@ -12,12 +13,13 @@ int main(int argc, char* argv[])
 
 	Timer t = Timer(secondi);
 	t.Start();
-	
+
 	while (t.Going())
 	{
 		if (getchar() == 'S' || getchar() == 's')
 			t.Stop();
 	}
 	
+
 	return 0;
 }
