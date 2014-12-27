@@ -24,15 +24,21 @@
     <ClCompile Include="InternetManager.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
+    <ClCompile Include="JsonManager.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Timer.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
-    <ClInclude Include="Background.h">
+    <ClInclude Include="InternetManager.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
-    <ClInclude Include="InternetManager.h">
+    <ClInclude Include="BackgroundImg.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="JsonManager.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
   </ItemGroup>
