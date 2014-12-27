@@ -5,10 +5,6 @@
 #include "BackgroundImg.h"
 #include "InternetManager.h"
 
-BackgroundImg BackFromUrl(std::string url)
-{
-	return BackgroundImg("background", url.substr(url.length() - 4, url.npos));
-}
 
 Timer::Timer(int i)
 {
@@ -16,7 +12,7 @@ Timer::Timer(int i)
 	go = true;
 	inetMan = InternetManager();
 	jsonMan = JsonManager();
-	GetCurrentDirectory(MAX_PATH, exePath);
+	GetCurrentDirectoryA(MAX_PATH, exePath);
 	lstrcat(exePath, "\\");
 }
 
