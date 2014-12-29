@@ -32,6 +32,10 @@ int CALLBACK WinMain(HINSTANCE hInstance,HINSTANCE hPrevInstance,LPSTR lpCmdLine
 	jsonMan.setInput(jsonPage);
 	jsonMan.parseInput();
 
+	// if it doesn't find urls exit
+	if (jsonMan.getUrlN() == 0)
+		return 0;
+
 	// random and download the background
 	srand(time(NULL));
 	int indexRand = rand() % jsonMan.getUrlN();
@@ -39,7 +43,9 @@ int CALLBACK WinMain(HINSTANCE hInstance,HINSTANCE hPrevInstance,LPSTR lpCmdLine
 	_RPT3(0, "Random: %d/%d, Url: %s\n", indexRand, jsonMan.getUrlN(), urlImg.c_str());
 	BackgroundImg back = BackFromUrl(urlImg);
 	std::string imgPath = std::string("download\\background") + back.extension;
-	inetMan.DownloadFile(urlImg, imgPath);
+	// if the download fail exit
+	if (inetMan.DownloadFile(urlImg, imgPath) != S_OK)
+		return 0;
 	_RPT1(0, "File downloaded in %s\n", imgPath.c_str());
 
 	// build the absolute path of image, because Windows API sucks
