@@ -8,12 +8,6 @@
 
 #define SUBREDDIT_DEFAULT "earthporn+skyporn"
 
-std::string ExePath() {
-	char buffer[MAX_PATH];
-	GetModuleFileNameA(NULL, buffer, MAX_PATH);
-	std::string::size_type pos = std::string(buffer).find_last_of("\\/");
-	return std::string(buffer).substr(0, pos + 1);
-}
 
 BackgroundImg BackFromUrl(std::string url)
 {
@@ -23,7 +17,6 @@ BackgroundImg BackFromUrl(std::string url)
 int CALLBACK WinMain(HINSTANCE hInstance,HINSTANCE hPrevInstance,LPSTR lpCmdLine,int nCmdShow)
 {
 	std::string subreddit = __argc > 1 ? __argv[1] : SUBREDDIT_DEFAULT;
-	std::string path = ExePath(); // absolute path of exe
 
 	InternetManager inetMan;
 	JsonManager jsonMan;
@@ -49,11 +42,17 @@ int CALLBACK WinMain(HINSTANCE hInstance,HINSTANCE hPrevInstance,LPSTR lpCmdLine
 	std::string urlImg = jsonMan.getUrl(indexRand);
 	_RPT3(0, "Random: %d/%d, Url: %s\n", indexRand, jsonMan.getUrlN(), urlImg.c_str());
 	BackgroundImg back = BackFromUrl(urlImg);
-	std::string imgPath = path + std::string("download\\background") + back.extension;
+	std::string imgPath = std::string("download\\background") + back.extension;
 	// if the download fail exit
 	if (inetMan.DownloadFile(urlImg, imgPath) != S_OK)
 		return 0;
 	_RPT1(0, "File downloaded in %s\n", imgPath.c_str());
+
+	// build the absolute path of image, because Windows API sucks
+	char path[MAX_PATH];
+	GetCurrentDirectoryA(MAX_PATH, path);
+	strcat_s(path, MAX_PATH, "\\");
+	imgPath = path + imgPath;
 
 	// set new background
 	_RPT1(0, "Path: %s\n", imgPath.c_str());
