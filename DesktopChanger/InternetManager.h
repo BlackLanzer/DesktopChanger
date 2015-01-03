@@ -16,7 +16,7 @@ public:
 	InternetManager();
 	~InternetManager();
 	HRESULT DownloadFile(std::string url, std::string path);
-	void DownloadPage(std::string subreddit, char** buffer);
+	static void DownloadPage(std::string subreddit, char** buffer);
 	bool IsDownloading();
 
 

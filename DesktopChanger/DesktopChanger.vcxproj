@@ -80,16 +80,34 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DesktopChanger.cpp" />
     <ClCompile Include="InternetManager.cpp" />
     <ClCompile Include="JsonManager.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="misc.cpp" />
+    <ClCompile Include="windowsManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BackgroundImg.h" />
+    <ClInclude Include="DesktopChanger.h" />
     <ClInclude Include="InternetManager.h" />
     <ClInclude Include="JsonManager.h" />
+    <ClInclude Include="misc.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="windowsManager.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="DesktopChanger.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\DC_Timer\icon.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="DesktopChanger.rc" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>
